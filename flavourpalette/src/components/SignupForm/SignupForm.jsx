@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-//import * as authService from '../../services/authService'
+import ImageUpload from '../ImageUpload/ImageUpload';
 import { signup } from '../../services/authService';
+
 
 const SignupForm = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState(['']);
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
+  const [imageFile, setImageFile] = useState(null);
   const [formData, setFormData] = useState({
     username: '',
     email:'',
@@ -16,7 +18,9 @@ const SignupForm = () => {
     profile_image: '',
   });
 
-
+  const handleImageUpload = (url) => {
+    setFormData({ ...formData, profile_image: url });
+};
 
 
   const handleChange = (e) => {
@@ -31,6 +35,7 @@ const handleSubmit = async (e) => {
     try {
         const response = await signup(formData);
         setSuccessMessage('Sign up successful!');
+        navigate('/')//should go straight to profile page maybe instead?
         setErrors({});
     } catch (error) {
         // Set the error messages for each field
@@ -110,12 +115,12 @@ const handleSubmit = async (e) => {
         <div>
           
           <label htmlFor="profilePicture">profile picture:</label>
-             <input
-            type="text"
+          <ImageUpload
             name="profile_image"
-            value={formData.profile_image}
-            onChange={handleChange}
+            photoImage={formData.profile_image}
+            handleImageUpload={handleImageUpload}
              />
+            {errors.profile_image && <span>{errors.profile_image}</span>}
         </div>
 
         <div>
