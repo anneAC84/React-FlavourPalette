@@ -1,6 +1,10 @@
-// src/components/Dashboard.jsx
+
+
 
 const Dashboard = ({ user }) => {
+
+    
+
     return (
       <main>
         <h1>Welcome, {user.username}</h1>

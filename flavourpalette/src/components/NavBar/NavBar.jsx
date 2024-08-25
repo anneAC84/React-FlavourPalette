@@ -8,7 +8,8 @@ const NavBar = ({ user }) => {
         { user ? (
           <nav>
             <ul>
-              <li><Link to="/">Home</Link></li>
+            <li><Link to="/">Dashboard</Link></li>
+              
               <li><Link to="">Sign Out</Link></li>
             </ul>
           </nav>
@@ -17,6 +18,7 @@ const NavBar = ({ user }) => {
             <ul>
               <li><Link to="/signin">Sign In</Link></li>
               <li><Link to="/signup">Sign Up</Link></li>
+              <li><Link to="/">Home</Link></li>
             </ul>
           </nav>
         )}

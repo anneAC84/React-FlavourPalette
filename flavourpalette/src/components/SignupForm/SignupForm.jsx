@@ -9,7 +9,6 @@ const SignupForm = () => {
   const [message, setMessage] = useState(['']);
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
-  const [imageFile, setImageFile] = useState(null);
   const [formData, setFormData] = useState({
     username: '',
     email:'',
@@ -34,19 +33,12 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     try {
         const response = await signup(formData);
+        
         setSuccessMessage('Sign up successful!');
         navigate('/')//should go straight to profile page maybe instead?
         setErrors({});
     } catch (error) {
-        // Set the error messages for each field
-        const newErrors = {};
-        if (error.email) {
-            newErrors.email = error.email;
-        }
-        if (error.username) {
-            newErrors.username = error.username;
-        }
-        setErrors(newErrors);
+       setErrors(error);
     }
 };
 
@@ -74,7 +66,7 @@ const handleSubmit = async (e) => {
             required
             
           />
-          {errors.username && <p>{errors.username}</p>}
+          {errors.username && <span>{errors.username}</span>}
         </div>
         <div>
           <label htmlFor="email">Email:</label>
@@ -86,7 +78,7 @@ const handleSubmit = async (e) => {
             onChange={handleChange}
             required
           />
-          {errors.email && <p>{errors.email}</p>}
+          {errors.email && <span>{errors.email}</span>}
         </div>
         <div>
           <label htmlFor="password">Password:</label>
@@ -98,7 +90,7 @@ const handleSubmit = async (e) => {
             onChange={handleChange}
             required
           />
-          {errors.password && <p>{errors.password}</p>}
+          {errors.password && <span>{errors.password}</span>}
         </div>
         <div>
           <label htmlFor="password_confirmation">Confirm Password:</label>
@@ -124,6 +116,12 @@ const handleSubmit = async (e) => {
         </div>
 
         <div>
+        {errors.non_field_errors && errors.non_field_errors.length > 0 && errors.non_field_errors.map((error, index) => (
+    <p key={index} style={{ color: 'red' }}>{error}</p>
+  ))}
+        </div>
+
+        <div>
           <button disabled={formData.password !== formData.password_confirmation}>Sign Up</button>
           <Link to="/">
             <button>Cancel</button>
@@ -131,7 +129,7 @@ const handleSubmit = async (e) => {
         </div>
       </form>
       {successMessage && <p>{successMessage}</p>}
-      {errors.general && <p>{errors.general}</p>}
+    
       <p>
         Already have an account? <Link to="/signin">Log in</Link>
       </p>

@@ -1,4 +1,4 @@
-const Landing = () => {
+const Homepage = () => {
     return (
       <main>
         <h1>Hello, you are on the landing page for visitors.</h1>
@@ -10,4 +10,4 @@ const Landing = () => {
     );
   };
   
-  export default Landing;
+  export default Homepage;
