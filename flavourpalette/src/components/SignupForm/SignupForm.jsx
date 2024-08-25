@@ -1,21 +1,31 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ImageUpload from '../ImageUpload/ImageUpload';
-import { signup } from '../../services/authService';
-
+import { signup } from '../../services/authService'
+import { AuthedUserContext } from '../../App';
 
 const SignupForm = () => {
-  const navigate = useNavigate();
-  const [message, setMessage] = useState(['']);
-  const [errors, setErrors] = useState({});
+  const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const { setUser } = useContext(AuthedUserContext);
+  const navigate = useNavigate();
+  const [redirect, setRedirect] = useState(false);
+  const placeholderImageUrl = 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/thumbnails/image/placeholder-profile_1.png'
   const [formData, setFormData] = useState({
     username: '',
     email:'',
     password: '',
     password_confirmation: '',
-    profile_image: '',
+    profile_image: placeholderImageUrl,
   });
+
+  useEffect(() => {
+    if (redirect) {
+      setTimeout(() => {
+        navigate('/');  // Redirect to the dashboard
+      }, 2000);
+    }
+  }, [redirect, navigate]);
 
   const handleImageUpload = (url) => {
     setFormData({ ...formData, profile_image: url });
@@ -31,29 +41,43 @@ const SignupForm = () => {
   
 const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-        const response = await signup(formData);
-        
-        setSuccessMessage('Sign up successful!');
-        navigate('/')//should go straight to profile page maybe instead?
-        setErrors({});
-    } catch (error) {
-       setErrors(error);
+    setErrorMessage('');
+
+    
+    const dataToSubmit = { ...formData };
+    if (!dataToSubmit.profile_image) {
+        dataToSubmit.profile_image = placeholderImageUrl;
     }
-};
 
+    try {
+        const data = await signup(formData);
+        setSuccessMessage('Signup successful! Redirecting to your dashboard...');
+        setUser(data.user);
+        setRedirect(true);    
+      } catch (error) {
+        console.log("Error caught:", error);
 
-  //const isFormInvalid = () => {
-    //const { username, email, password, passwordConfirm } = formData;
-    //return !(username && email && password && password === passwordConfirm);
-  //};
+        if (error.response) {  // Access the attached response data
+            const errors = error.response;
+
+          const messages = [];
+          if (errors.username) messages.push(`Username: ${errors.username[0]}`);
+          if (errors.email) messages.push(`Email: ${errors.email[0]}`);
+          if (errors.password) messages.push(`Password: ${errors.password[0]}`);
+          if (errors.non_field_errors) messages.push(errors.non_field_errors[0]);
+            
+            const message = messages.join('\n');   
+            setErrorMessage(message);
+          } else {
+            setErrorMessage('Signup failed. Please try again.');
+          }
+        }
+      };
   
-
 
     return (
     <main>
       <h1>Sign Up</h1>
-       {message && <p style={{ color: 'red' }}>{message}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username:</label>
@@ -66,7 +90,6 @@ const handleSubmit = async (e) => {
             required
             
           />
-          {errors.username && <span>{errors.username}</span>}
         </div>
         <div>
           <label htmlFor="email">Email:</label>
@@ -78,7 +101,6 @@ const handleSubmit = async (e) => {
             onChange={handleChange}
             required
           />
-          {errors.email && <span>{errors.email}</span>}
         </div>
         <div>
           <label htmlFor="password">Password:</label>
@@ -90,7 +112,6 @@ const handleSubmit = async (e) => {
             onChange={handleChange}
             required
           />
-          {errors.password && <span>{errors.password}</span>}
         </div>
         <div>
           <label htmlFor="password_confirmation">Confirm Password:</label>
@@ -102,7 +123,6 @@ const handleSubmit = async (e) => {
             onChange={handleChange}
             required
           />
-          {errors.password_confirmation && <p>{errors.password_confirmation}</p>}
         </div>
         <div>
           
@@ -111,25 +131,17 @@ const handleSubmit = async (e) => {
             name="profile_image"
             photoImage={formData.profile_image}
             handleImageUpload={handleImageUpload}
-             />
-            {errors.profile_image && <span>{errors.profile_image}</span>}
+             />   
         </div>
-
-        <div>
-        {errors.non_field_errors && errors.non_field_errors.length > 0 && errors.non_field_errors.map((error, index) => (
-    <p key={index} style={{ color: 'red' }}>{error}</p>
-  ))}
-        </div>
-
-        <div>
+         <div>
           <button disabled={formData.password !== formData.password_confirmation}>Sign Up</button>
           <Link to="/">
             <button>Cancel</button>
           </Link>
         </div>
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
       </form>
-      {successMessage && <p>{successMessage}</p>}
-    
       <p>
         Already have an account? <Link to="/signin">Log in</Link>
       </p>

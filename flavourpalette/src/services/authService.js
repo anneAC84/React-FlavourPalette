@@ -12,16 +12,20 @@ export const signup = async (formData) => {
       const json = await res.json();
       if (!res.ok) {
         console.log('Response from backend:', json);
-        throw json;
         
-      }
-      localStorage.setItem('token', json.token);
-      return json;
-    } catch (error) {
-        console.error('Error in signup:', error);;
-      throw error;
+        const error = new Error('Signup failed');
+        error.response = json;
+        throw error;
     }
 
+    localStorage.setItem('token', json.token);
+    return json;
+} catch (error) {
+    console.error('Error in signup:', error);
+    
+    // Re-throw the error for the calling function to handle it
+     throw error;
+   }
 }
   
   
@@ -40,7 +44,7 @@ export const signin = async (formData) => {
       }
   
       const data = await response.json();
-      console.log('Login Response:', data);
+      console.log('Signin Response:', data);
 
     // Save the token to localStorage or cookies
     localStorage.setItem('access_token', data.access);
@@ -51,7 +55,14 @@ export const signin = async (formData) => {
 
     return data;
   } catch (error) {
-    console.error('Login error:', error.message);
+    console.error('Signin error:', error.message);
     throw error;
   }
 };
+
+export const signout = () => {
+    console.log('Signing out...');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('user');
+  };

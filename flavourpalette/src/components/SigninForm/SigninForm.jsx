@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService';
-
+import { AuthedUserContext } from '../../App';
 
 const SigninForm = () => {
 const navigate = useNavigate();
 const [errorMessage, setErrorMessage] = useState('');
-
+const { setUser } = useContext(AuthedUserContext);
 const [formData, setFormData] = useState({
 
   username: '',
@@ -27,9 +27,9 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   try {
     const data = await authService.signin(formData); // Call the signin function
-
+    setUser(data.user);
     // Redirect or update state to reflect the user is logged in
-    navigate('/dashboard');  // Assuming you have a dashboard route
+    navigate('/');  // Assuming you have a dashboard route
   } catch (error) {
     setErrorMessage(error.message); // Display the error message
   }

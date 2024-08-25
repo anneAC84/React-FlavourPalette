@@ -1,29 +1,31 @@
 import { Link } from 'react-router-dom';
+import { AuthedUserContext } from '../../App'
+import { useContext } from 'react'; 
 
+const NavBar = ({ handleSignout }) => {
 
-
-const NavBar = ({ user }) => {
+    const {user}= useContext(AuthedUserContext)
     return (
-      <>
-        { user ? (
+    
+        
           <nav>
             <ul>
+            { user ? (
+            <>
             <li><Link to="/">Dashboard</Link></li>
-              
-              <li><Link to="">Sign Out</Link></li>
-            </ul>
-          </nav>
+            <li><Link to="" onClick={handleSignout}>Sign Out</Link></li>
+            </>
         ) : (
-          <nav>
-            <ul>
+            <>
               <li><Link to="/signin">Sign In</Link></li>
               <li><Link to="/signup">Sign Up</Link></li>
               <li><Link to="/">Home</Link></li>
+              <li><Link to="/recipes">Recipes</Link></li>
+              </>
+             )}
             </ul>
           </nav>
-        )}
-      </>
-    )
-  }
+        )
+    }
   
   export default NavBar;
