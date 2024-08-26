@@ -52,6 +52,7 @@ const App = () => {
     console.log('Handling sign out...');
     signout();
     setUser(null);
+    navigate('/')
   };
 
   const handleAddRecipe = async (recipeFormData) => {
@@ -66,33 +67,22 @@ const App = () => {
 
   return (
 
-    <>
-     
-    <AuthedUserContext.Provider value={{user, setUser}}>
-      <NavBar user={user} handleSignout={handleSignout}/>
-      <Routes>
-        { 
-        user ? (
+    <AuthedUserContext.Provider value={{ user, setUser }}>
+    <NavBar user={user} handleSignout={handleSignout} />
+    <Routes>
+      <Route path="/" element={user ? <Dashboard user={user} /> : <Homepage recipes={recipes} />} />
+      <Route path="/recipes" element={<RecipeList user={user} />} />
+      <Route path="/recipes/:recipeId" element={<RecipeDetails />} />
+      {user && (
         <>
-       
-          <Route path="/" element={<Dashboard user={user} />} />
           <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
-          
-          </>
-        ) : (
-         <>
-         <Route path="/" element={<Homepage recipes={recipes} />} />
-         <Route path="/recipes" element={<RecipeList user={user} />} />
-         <Route path="/recipes/:recipeId" element={<RecipeDetails />} />
-         
-          </>
-        )}
-        <Route path='/signup' element={<SignupForm setUser={setUser} />} />
-        <Route path='/signin' element={<SigninForm setUser={setUser} />} />
-      </Routes>
-      </AuthedUserContext.Provider>
-    </>
-  );
+        </>
+      )}
+      <Route path="/signup" element={<SignupForm setUser={setUser} />} />
+      <Route path="/signin" element={<SigninForm setUser={setUser} />} />
+    </Routes>
+  </AuthedUserContext.Provider>
+);
 };
 
 export default App;

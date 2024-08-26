@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import ImageUpload from '../ImageUpload/ImageUpload';
-import TimePicker from 'react-time-picker'
 import { useNavigate } from 'react-router-dom';
-import './RecipeForm.css' // Import your CSS file
-
 
 const RecipeForm = (props) => {
   const [formData, setFormData] = useState({
@@ -12,35 +9,23 @@ const RecipeForm = (props) => {
     description: '',
     ingredients: '',
     method: '',
-    cooking_time: '00:00:00', // This will be in a format that matches the Django DurationField
+    cooking_time: '', // This will be in a format that matches the Django DurationField
   });
 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-   
   };
 
   const handleImageUpload = (url) => {
     setFormData({ ...formData, picture: url });
   };
 
-  const handleTimeChange = (value) => {
-    setFormData({ ...formData, cooking_time: value });
-
-  };
-
-  const formatTimeToDuration = (time) => {
-    const [hours, minutes, seconds] = time.split(':').map(Number);
-    return `PT${hours}H${minutes}M${seconds}S`;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const formattedCookingTime = formatTimeToDuration(formData.cooking_time);
-        await props.handleAddRecipe({ ...formData, cooking_time: formattedCookingTime }); // Ensure this function is properly defined
+        await props.handleAddRecipe(formData); // Ensure this function is properly defined
         navigate('/recipes'); // Navigate to a new page after successful submission
       } catch (error) {
         console.error('Error adding recipe:', error);
@@ -106,19 +91,15 @@ const RecipeForm = (props) => {
         </div>
 
         <div>
-          <label htmlFor="cooking-time-input">Cooking Time (ISO 8601 duration format)
-          Cooking Time (HH:mm:ss):
-          <TimePicker
+          <label htmlFor="cooking-time-input">Cooking Time (ISO 8601 duration format)</label>
+          <input
+            required
+            type="text"
             name="cooking_time"
-            value={formData.cooking_time}
-            onChange={handleTimeChange}
-            format="HH:mm:ss"
-            clearIcon={null}
-            clockIcon={null}
-            disableClock={true}
             id="cooking-time-input"
+            value={formData.cooking_time}
+            onChange={handleChange}
           />
-          </label>
         </div>
 
         <div>
