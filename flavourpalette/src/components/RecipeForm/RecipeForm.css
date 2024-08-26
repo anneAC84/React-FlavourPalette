@@ -1,0 +1,23 @@
+
+/* Increase the width of time picker input boxes */
+.react-time-picker__inputGroup__input {
+  width: 200px; /* Increase width as needed */
+  font-size: 1.2rem; /* Adjust font size for better readability */
+  text-align: center; /* Center align text */
+  /* Optional: Add padding to increase the box size */
+  padding: 5px;
+}
+
+/* Ensure the time-picker container has appropriate styling */
+.react-time-picker {
+  margin: 10px 0; /* Adjust margins as needed */
+  display: flex;
+  align-items: center; /* Center align items vertically */
+}
+
+/* Ensure time-picker input group is styled properly */
+.react-time-picker__inputGroup {
+  width: 100px;
+    display: flex;
+  gap: 8px; /* Adjust space between input fields if necessary */
+}

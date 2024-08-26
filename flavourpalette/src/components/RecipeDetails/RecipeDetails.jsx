@@ -11,20 +11,36 @@ const [recipe, setRecipe] = useState(null);
     console.log('recipeId', recipeId);
 
     useEffect(() => {
-        const fetchRecipe = async () => {
-          const recipeData = await recipeService.show(recipeId);
-          console.log('recipeData', recipeData);
-          setRecipe(recipeData);
-        };
+        if (recipeId !== 'new') {
+          const fetchRecipe = async () => {
+            try {
+              const recipeData = await recipeService.show(recipeId);
+              setRecipe(recipeData);
+            } catch (error) {
+              console.error('Error fetching recipe:', error);
+            }
+          };
+
+
         fetchRecipe();
+        }
       }, [recipeId]);
       
       // Verify that hoot state is being set correctly:
       console.log('recipe state:', recipe);
 
-      if (!recipe) return <main>Loading...</main>;
+      if (!recipe && recipeId !== 'new') return <main>Loading...</main>;
+
+
       return (
-        <main>
+    <main>
+      {recipeId === 'new' ? (
+        <div>
+          <h1>Create a New Recipe</h1>
+          {/* Render form or message for creating a new recipe */}
+        </div>
+      ) : (
+        <div>
           <header>
             <img src={recipe.picture} alt={recipe.title} style={{ width: '100%', height: 'auto' }} />
             <h1>{recipe.title}</h1>
@@ -47,14 +63,16 @@ const [recipe, setRecipe] = useState(null);
             <h2>Comments</h2>
             {/* Placeholder for comments section */}
           </section>
-        </main>
-      );
-    };
-    
-    const formatDuration = (duration) => {
-      const hours = Math.floor(duration / 3600);
-      const minutes = Math.floor((duration % 3600) / 60);
-      return `${hours > 0 ? `${hours}h ` : ''}${minutes}m`;
-    };
-    
-    export default RecipeDetails;
+        </div>
+      )}
+    </main>
+  );
+};
+
+const formatDuration = (duration) => {
+  const hours = Math.floor(duration / 3600);
+  const minutes = Math.floor((duration % 3600) / 60);
+  return `${hours > 0 ? `${hours}h ` : ''}${minutes}m`;
+};
+
+export default RecipeDetails;

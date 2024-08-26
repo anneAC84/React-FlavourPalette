@@ -9,6 +9,11 @@ const ImageUpload = ({ handleImageUpload }) => {
   const handleSelectImage = async (event) => {
     const file = event.target.files[0];
 
+    if (!file) {
+      setMessage('No file selected.');
+      return;
+    }
+
     if (file.size > 100000000) {  // Adjust the size limit as needed
       return setMessage('Image too large. Please select a smaller image (max: 80KB)');
     }

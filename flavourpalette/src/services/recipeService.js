@@ -33,9 +33,11 @@ export const show = async (recipeId) => {
       });
   
       if (!res.ok) {
+        if (res.status === 404) {
+            throw new Error(`Recipe with ID ${recipeId} not found.`);
+      }
         throw new Error(`HTTP error! status: ${res.status}`); // Handle HTTP errors
       }
-  
       return res.json();
     } catch (error) {
       console.error(`Error fetching recipe with ID ${recipeId}:`, error);
@@ -43,5 +45,28 @@ export const show = async (recipeId) => {
     }
   };
 
-
+  export const create = async (recipeFormData) => {
+    try {
+      const token = localStorage.getItem('access_token'); // Get the access token if available
+      const headers = {
+        Authorization: token ? `Bearer ${token}` : '', // Include the token in the headers if available
+        'Content-Type': 'application/json',
+      };
+  
+      const res = await fetch(BASE_URL, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(recipeFormData),
+      });
+  
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`); // Handle HTTP errors
+      }
+  
+      return res.json(); // Return the parsed JSON response
+    } catch (error) {
+      console.error('Error creating recipe:', error);
+      throw error; // Rethrow the error to handle it elsewhere
+    }
+  };
  

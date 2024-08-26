@@ -9,6 +9,7 @@ import RecipeList from './components/RecipeList/RecipeList';
 import { signout } from './services/authService';
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import * as recipeService from './services/recipeService';
+import RecipeForm from './components/RecipeForm/RecipeForm';
 
 
 export const AuthedUserContext = createContext(null)
@@ -53,6 +54,16 @@ const App = () => {
     setUser(null);
   };
 
+  const handleAddRecipe = async (recipeFormData) => {
+    try {
+      const newRecipe = await recipeService.create(recipeFormData);
+      setRecipes([newRecipe, ...recipes]);
+      navigate('/');
+    } catch (error) {
+      alert('There was an issue adding your recipe. Please try again.');
+    }
+  };
+
   return (
 
     <>
@@ -65,7 +76,7 @@ const App = () => {
         <>
        
           <Route path="/" element={<Dashboard user={user} />} />
-          
+          <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
           
           </>
         ) : (
@@ -73,6 +84,7 @@ const App = () => {
          <Route path="/" element={<Homepage recipes={recipes} />} />
          <Route path="/recipes" element={<RecipeList user={user} />} />
          <Route path="/recipes/:recipeId" element={<RecipeDetails />} />
+         
           </>
         )}
         <Route path='/signup' element={<SignupForm setUser={setUser} />} />
