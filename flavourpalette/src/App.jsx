@@ -7,7 +7,7 @@ import SignupForm from './components/SignupForm/SignupForm'
 import SigninForm from './components/SigninForm/SigninForm'
 import RecipeList from './components/RecipeList/RecipeList';
 import { signout } from './services/authService';
-//import RecipeDetails from './components/RecipeDetails/RecipeDetails';
+import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import * as recipeService from './services/recipeService';
 
 
@@ -72,7 +72,7 @@ const App = () => {
          <>
          <Route path="/" element={<Homepage recipes={recipes} />} />
          <Route path="/recipes" element={<RecipeList user={user} />} />
-         
+         <Route path="/recipes/:recipeId" element={<RecipeDetails />} />
           </>
         )}
         <Route path='/signup' element={<SignupForm setUser={setUser} />} />
