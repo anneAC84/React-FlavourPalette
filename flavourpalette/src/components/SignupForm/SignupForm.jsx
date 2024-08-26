@@ -22,7 +22,7 @@ const SignupForm = () => {
   useEffect(() => {
     if (redirect) {
       setTimeout(() => {
-        navigate('/');  // Redirect to the dashboard
+        navigate('/signin');  // Redirect to the dashboard
       }, 2000);
     }
   }, [redirect, navigate]);
@@ -42,7 +42,7 @@ const SignupForm = () => {
 const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
-
+    setSuccessMessage('');
     
     const dataToSubmit = { ...formData };
     if (!dataToSubmit.profile_image) {
@@ -50,7 +50,7 @@ const handleSubmit = async (e) => {
     }
 
     try {
-        const data = await signup(formData);
+        const data = await signup(dataToSubmit);
         setSuccessMessage('Signup successful! Redirecting to your dashboard...');
         setUser(data.user);
         setRedirect(true);    
@@ -72,6 +72,11 @@ const handleSubmit = async (e) => {
             setErrorMessage('Signup failed. Please try again.');
           }
         }
+      };
+
+      const isFormInvalid = () => {
+        const { username, email, password, password_confirmation } = formData;
+        return !(username && email && password && password_confirmation);
       };
   
 

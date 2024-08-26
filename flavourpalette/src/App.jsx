@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Homepage from './components/Homepage/Homepage';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -7,11 +7,16 @@ import SignupForm from './components/SignupForm/SignupForm'
 import SigninForm from './components/SigninForm/SigninForm'
 import RecipeList from './components/RecipeList/RecipeList';
 import { signout } from './services/authService';
+//import RecipeDetails from './components/RecipeDetails/RecipeDetails';
+import * as recipeService from './services/recipeService';
+
 
 export const AuthedUserContext = createContext(null)
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const [recipes, setRecipes] = useState([]);
+  const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
     // Retrieve token and user data from localStorage on component mount
@@ -24,7 +29,23 @@ const App = () => {
     } else {
       console.log('No token or user data found');
     }
-  }, []);
+  }, [setUser]);
+
+  useEffect(() => {
+    const fetchAllRecipes = async () => {
+      try {
+        const recipesData = await recipeService.index();
+        setRecipes(recipesData);
+      } catch (error) {
+        console.error('Error fetching recipes:', error);
+        alert('You are not authorized. Please log in again.');
+        signout();
+            navigate('/signin');
+      }
+    };
+
+    fetchAllRecipes();
+  }, [setRecipes, navigate]); // Run this effect only once, on component mount
 
   const handleSignout = () => {
     console.log('Handling sign out...');
@@ -44,10 +65,14 @@ const App = () => {
         <>
        
           <Route path="/" element={<Dashboard user={user} />} />
+          
+          
           </>
         ) : (
          <>
-          <Route path="/" element={<Homepage />} />
+         <Route path="/" element={<Homepage recipes={recipes} />} />
+         <Route path="/recipes" element={<RecipeList user={user} />} />
+         
           </>
         )}
         <Route path='/signup' element={<SignupForm setUser={setUser} />} />
