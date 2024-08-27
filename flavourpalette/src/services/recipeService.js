@@ -69,4 +69,38 @@ export const show = async (recipeId) => {
       throw error; // Rethrow the error to handle it elsewhere
     }
   };
+
+
+  export const deleteRecipe = async (recipeId) => {
+    try {
+      // Get the token from local storage
+      const token = localStorage.getItem('access_token');
+      if (!token) {
+        throw new Error('No token found. User is not authenticated.');
+      }
+  
+      // Make the DELETE request using fetch
+      const response = await fetch(`${BASE_URL}${recipeId}/`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Failed to delete recipe with ID ${recipeId}. Status: ${response.status}`);
+      }
+  
+      const isJson = response.headers.get('content-type')?.includes('application/json');
+    if (isJson) {
+      return await response.json();
+    } else {
+      return {}; // or null, or true, depending on what you prefer to return
+    }
+  } catch (error) {
+    console.error(`Error deleting recipe with ID ${recipeId}:`, error);
+    throw error;
+  }
+};
  

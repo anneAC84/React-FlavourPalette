@@ -1,11 +1,14 @@
 
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import * as recipeService from '../../services/recipeService';
+import { AuthedUserContext } from '../../App';
+
 
 const RecipeDetails = (props) => {
 
 const [recipe, setRecipe] = useState(null);
+const user = useContext(AuthedUserContext);
 
     const { recipeId } = useParams();
     console.log('recipeId', recipeId);
@@ -64,7 +67,13 @@ const [recipe, setRecipe] = useState(null);
             {/* Placeholder for comments section */}
           </section>
         </div>
-      )}
+         )}
+
+    {recipe.created_by._id === user._id && (
+    <>
+      <button onClick={() => props.handleDeleteRecipe(recipeId)}>Delete</button>
+    </>
+  )}
     </main>
   );
 };

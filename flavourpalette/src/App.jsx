@@ -65,6 +65,16 @@ const App = () => {
     }
   };
 
+  const handleDeleteRecipe = async (recipeId) => {
+    try {
+      await recipeService.deleteRecipe(recipeId);
+      setRecipes(recipes.filter((recipe) => recipe._id !== recipeId));
+      navigate('/recipes');
+    } catch (error) {
+      console.error('Failed to delete recipe:', error);
+    }
+  };
+
   return (
 
     <AuthedUserContext.Provider value={{ user, setUser }}>
@@ -72,7 +82,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={user ? <Dashboard user={user} /> : <Homepage recipes={recipes} />} />
       <Route path="/recipes" element={<RecipeList user={user} />} />
-      <Route path="/recipes/:recipeId" element={<RecipeDetails />} />
+      <Route path="/recipes/:recipeId" element={<RecipeDetails handleDeleteRecipe={handleDeleteRecipe} />} />
       {user && (
         <>
           <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
