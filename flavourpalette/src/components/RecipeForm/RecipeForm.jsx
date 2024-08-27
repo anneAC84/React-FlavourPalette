@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import * as recipeService from '../../services/recipeService';
 
 const RecipeForm = (props) => {
   const [formData, setFormData] = useState({
@@ -11,7 +13,7 @@ const RecipeForm = (props) => {
     method: '',
     cooking_time: '', // This will be in a format that matches the Django DurationField
   });
-
+  const { recipeId } = useParams();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -25,17 +27,39 @@ const RecipeForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        await props.handleAddRecipe(formData); // Ensure this function is properly defined
-        navigate('/recipes'); // Navigate to a new page after successful submission
+        if (recipeId) {
+          // Update existing recipe
+          await props.handleUpdateRecipe(recipeId, formData);
+        } else {
+          // Add new recipe
+          await props.handleAddRecipe(formData);
+        }
+        navigate('/recipes'); // Navigate to the recipes page after successful submission
       } catch (error) {
-        console.error('Error adding recipe:', error);
+        console.error('Error submitting recipe:', error);
       }
     };
 
+    useEffect(() => {
+        const fetchRecipe = async () => {
+          const recipeData = await recipeService.show(recipeId);
+          setFormData(recipeData);
+        };
+        if (recipeId) fetchRecipe();
+      }, [recipeId]);
+
+      const handleUpdateRecipe = async (recipeId, recipeFormData) => {
+        console.log('recipeId:', recipeId, 'recipeFormData:', recipeFormData);
+        navigate(`/recipes/${recipeId}`);
+      };
+
+
   return (
     <main>
+        
       <h1>Create Recipe</h1>
       <form onSubmit={handleSubmit}>
+      <h1>{recipeId ? 'Edit Recipe' : 'New Recipe'}</h1>
         <div>
           <label htmlFor="title-input">Title</label>
           <input

@@ -75,6 +75,20 @@ const App = () => {
     }
   };
 
+  const handleUpdateRecipe = async (recipeId, recipeFormData) => {
+    console.log('Updating recipe with ID:', recipeId); 
+    try {
+      const updatedRecipe = await recipeService.update(recipeId, recipeFormData);
+      setRecipes(recipes.map((recipe) =>
+        recipe._id === recipeId ? updatedRecipe : recipe
+      ));
+      navigate(`/recipes/${recipeId}`); // Redirect after update
+    } catch (error) {
+      console.error('Error updating recipe:', error);
+      // Optionally, provide user feedback
+    }
+  };
+
   return (
 
     <AuthedUserContext.Provider value={{ user, setUser }}>
@@ -86,6 +100,7 @@ const App = () => {
       {user && (
         <>
           <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
+          <Route path="/recipes/:recipeId/edit" element={<RecipeForm handleUpdateRecipe={handleUpdateRecipe} />} />
         </>
       )}
       <Route path="/signup" element={<SignupForm setUser={setUser} />} />

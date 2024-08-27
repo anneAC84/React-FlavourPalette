@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import * as recipeService from '../../services/recipeService';
 import { AuthedUserContext } from '../../App';
-
+import { Link } from 'react-router-dom';
 
 const RecipeDetails = (props) => {
 
@@ -70,7 +70,9 @@ const user = useContext(AuthedUserContext);
          )}
 
     {recipe.created_by._id === user._id && (
+
     <>
+      <Link to={`/recipes/${recipeId}/edit`}>Edit</Link>
       <button onClick={() => props.handleDeleteRecipe(recipeId)}>Delete</button>
     </>
   )}

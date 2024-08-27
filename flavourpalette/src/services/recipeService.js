@@ -103,4 +103,34 @@ export const show = async (recipeId) => {
     throw error;
   }
 };
- 
+
+
+export async function update(recipeId, recipeFormData) {
+    try {
+      const token = localStorage.getItem('access_token');
+      const url = `${BASE_URL}${recipeId}/`; // Ensure URL ends with a slash
+      console.log('Request URL:', url);
+  
+      const res = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(recipeFormData),
+      });
+  
+      console.log('Response status:', res.status);
+  
+      if (!res.ok) {
+        const errorText = await res.text();
+        console.error('Error response:', errorText);
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+  
+      return res.json();
+    } catch (error) {
+      console.error('Error updating recipe:', error);
+      throw error;
+    }
+  }
