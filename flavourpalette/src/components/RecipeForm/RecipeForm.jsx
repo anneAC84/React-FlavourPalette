@@ -7,7 +7,7 @@ import * as recipeService from '../../services/recipeService';
 const RecipeForm = (props) => {
   const [formData, setFormData] = useState({
     title: '',
-    picture: 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/thumbnails/image/placeholder-profile_1.png',
+    picture: 'https://theme-assets.getbento.com/sensei/74ec6d7.sensei/assets/images/catering-item-placeholder-704x520.png',
     description: '',
     ingredients: '',
     method: '',

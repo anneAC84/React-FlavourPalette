@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const RecipeDetails = (props) => {
 
 const [recipe, setRecipe] = useState(null);
-const user = useContext(AuthedUserContext);
+const { user } = useContext(AuthedUserContext);
 
     const { recipeId } = useParams();
     console.log('recipeId', recipeId);
@@ -31,9 +31,14 @@ const user = useContext(AuthedUserContext);
       
       // Verify that hoot state is being set correctly:
       console.log('recipe state:', recipe);
+      console.log('user state:', user);
 
       if (!recipe && recipeId !== 'new') return <main>Loading...</main>;
 
+      if (recipe && user) {
+        console.log('Recipe created_by ID:', recipe.created_by.id);
+        console.log('User ID:', user.id);
+      }
 
       return (
     <main>
@@ -43,6 +48,7 @@ const user = useContext(AuthedUserContext);
           {/* Render form or message for creating a new recipe */}
         </div>
       ) : (
+        recipe && (
         <div>
           <header>
             <img src={recipe.picture} alt={recipe.title} style={{ width: '100%', height: 'auto' }} />
@@ -67,9 +73,10 @@ const user = useContext(AuthedUserContext);
             {/* Placeholder for comments section */}
           </section>
         </div>
+        )
          )}
 
-    {recipe.created_by._id === user._id && (
+{recipe && recipe.created_by.id === user.id && (
 
     <>
       <Link to={`/recipes/${recipeId}/edit`}>Edit</Link>
