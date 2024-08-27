@@ -76,7 +76,7 @@ const { user } = useContext(AuthedUserContext);
         )
          )}
 
-{recipe && recipe.created_by.id === user.id && (
+{recipe && user?.user?.id === recipe.created_by.id && (
 
     <>
       <Link to={`/recipes/${recipeId}/edit`}>Edit</Link>

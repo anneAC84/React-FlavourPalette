@@ -27,30 +27,31 @@ const RecipeList = ({ user }) => {
 
     if (!isAuthorized) {
         return (
-            <main>
+            <main className="recipe-list-container">
                 <h1>Recipe List</h1>
-                <p>You are not authorized to view the recipes. Please <a href="/signin">log in</a>.</p>
+                
             </main>
         );
     }
 
     return (
-        <main>
-            <h1>Recipe List</h1>
-            <ul>
+        <main className="recipe-list-container">
+            <h1 className="recipe-list-title"> All Recipes </h1>
+            <div className="recipes-grid">
                 {recipes.length > 0 ? (
                     recipes.map((recipe) => (
-                        <div key={recipe.id}>
-                            <Link to={`/recipes/${recipe.id}`}>
-                            <h3>{recipe.title}</h3>
-                            <img src={recipe.picture} alt={recipe.title} style={{ width: '100px' }} />
-                            <p>{recipe.description}</p>
-                            {recipe.created_by && <p>Created by: {recipe.created_by.username}</p>}
+                        <div className="recipe-card" key={recipe.id}>
+                            <Link to={`/recipes/${recipe.id}`} className="recipe-link">
+                                <img src={recipe.picture} alt={recipe.title} className="recipe-image" />
+                                <div className="recipe-info">
+                                    <h3 className="recipe-title">{recipe.title}</h3>
+                                    <p className="recipe-description">{recipe.description}</p>
+                                    {recipe.created_by && <p className="recipe-creator">Created by: {recipe.created_by.username}</p>}
+                                </div>
                             </Link>
-                            
                             {user && (
-                                <button onClick={() => console.log(`Bookmarking recipe with id: ${recipe.id}`)}>
-                                    Bookmark
+                                <button className="bookmark-button" onClick={() => console.log(`Bookmarking recipe with id: ${recipe.id}`)}>
+                                    <i className="fas fa-bookmark"></i>
                                 </button>
                             )}
                         </div>
@@ -58,7 +59,7 @@ const RecipeList = ({ user }) => {
                 ) : (
                     <p>No recipes found.</p>
                 )}
-            </ul>
+            </div>
         </main>
     );
 };

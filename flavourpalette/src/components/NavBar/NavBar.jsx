@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
 import { AuthedUserContext } from '../../App'
 import { useContext } from 'react'; 
+import './NavBar.css';  // Add this for any specific styling
 
 const NavBar = ({ handleSignout }) => {
 
     const {user}= useContext(AuthedUserContext)
-    return (
     
+    
+    return (
+        <header className="navbar-header">
+      <div className="navbar-signature">FlavourPalette</div>
+      <nav className="navbar-nav">
+       <ul>
         
-          <nav>
-            <ul>
             { user ? (
             <>
             <li><Link to="/">Dashboard</Link></li>
@@ -18,14 +22,17 @@ const NavBar = ({ handleSignout }) => {
             </>
         ) : (
             <>
-              <li><Link to="/signin">Sign In</Link></li>
-              <li><Link to="/signup">Sign Up</Link></li>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/recipes">Recipes</Link></li>
+            <nav className="homepage-nav">
+          <Link to="/recipes">Recipes</Link>
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/signin">Sign In</Link>
+          <Link to="/">Home</Link>
+        </nav>
               </>
              )}
             </ul>
           </nav>
+          </header>
         )
     }
   

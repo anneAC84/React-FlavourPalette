@@ -1,0 +1,124 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.homepage-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styling */
+.homepage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.homepage-nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1rem;
+}
+
+.homepage-nav a:hover {
+    text-decoration: underline;
+}
+
+/* Hero section */
+.homepage-hero {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.homepage-hero h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+/* Carousel section */
+.homepage-carousel {
+    margin-bottom: 40px;
+}
+
+/* Recipes grid */
+.homepage-recipes {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.recipes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Recipe card styling */
+.recipe-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: calc(25% - 20px); /* Four cards per row */
+    max-width: 300px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for the pop-out */
+.recipe-card:hover {
+    transform: translateY(-10px); /* Moves the card upwards */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Adds a stronger shadow for the pop-out effect */
+}
+
+.recipe-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Title */
+.recipe-card h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #333;
+}
+
+/* Description text */
+.recipe-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Primary button */
+.btn-primary {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: auto; /* Ensures the button is at the bottom */
+}
+
+/* Button hover effect */
+.btn-primary:hover {
+    background-color: #0056b3;
+}

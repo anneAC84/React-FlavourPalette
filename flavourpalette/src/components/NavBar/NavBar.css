@@ -1,0 +1,48 @@
+.navbar-header {
+    width: 100%;
+    padding: 20px 0; /* Adjusted padding to match spacing */
+    background-color: #f8f8f8; /* Match the background color if needed */
+    display: flex;
+    justify-content: space-between; /* Align items to the ends of the header */
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Space between header and content */
+  }
+  
+  /* Signature/Branding */
+  .navbar-signature {
+    font-size: 1.8rem; /* Match the font size from Homepage */
+    font-family: 'Brush Script MT', cursive; /* Match the font family */
+    color: #333; /* Match the color */
+    margin-left: 20px; /* Space from the left edge */
+  }
+  
+  /* Navigation Bar */
+  .navbar-nav {
+    display: flex;
+    gap: 40px; /* Space between the links */
+    font-size: 1rem; /* Font size for links */
+  }
+  
+  .navbar-nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar-nav ul li {
+    margin: 0;
+  }
+  
+  /* Navigation Links */
+  .navbar-nav ul li a {
+    text-decoration: none;
+    color: #007bff; /* Link color, adjust if needed */
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-nav ul li a:hover {
+    color: #0056b3; /* Hover state */
+  }
