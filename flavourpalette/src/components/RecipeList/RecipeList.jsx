@@ -43,7 +43,7 @@ const RecipeList = ({ user }) => {
                         <div key={recipe.id}>
                             <Link to={`/recipes/${recipe.id}`}>
                             <h3>{recipe.title}</h3>
-                            <img src={recipe.imageUrl} alt={recipe.title} style={{ width: '100px' }} />
+                            <img src={recipe.picture} alt={recipe.title} style={{ width: '100px' }} />
                             <p>{recipe.description}</p>
                             {recipe.created_by && <p>Created by: {recipe.created_by.username}</p>}
                             </Link>
