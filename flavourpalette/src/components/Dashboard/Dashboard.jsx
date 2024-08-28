@@ -1,32 +1,42 @@
-import { Link } from 'react-router-dom';
+import { Link, Routes } from "react-router-dom";
+import './Dashboard.css'; // Import the CSS file for styling
+import RecipeList from "../RecipeList/RecipeList"; // Import RecipeList
+
 const defaultImage = 'https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/thumbnails/image/placeholder-profile_1.png'; // Your default image URL
 
-const Dashboard = ({ user }) => {
-    const profileImage = user.profile_image || defaultImage;
-    
+const Dashboard = ({ user, handleSignout }) => {
+  const profileImage = user.profile_image || defaultImage;
 
-    return (
-      <main>
-        <h1>Welcome, {user.username}</h1>
-       {/* Display the profile picture */}
-       {user.profile_image && (
-        <div>
-          <img
-            src={user.profile_image}
-            alt={`${user.username}'s profile`}
-            style={{ width: '150px', height: '150px', borderRadius: '50%' }} // Example styling
-          />
-        </div>
-      )}
-        <p>Here are your options:</p>
-      {/* Add other dashboard content here */}
-
-      {/* Add a link to the Recipe List */}
-      <Link to="/recipes">
-        <button>View All Recipes</button>
-      </Link>
-      </main>
-    );
-  };
   
-  export default Dashboard;
+
+  return (
+    <div className="dashboard-container">
+        <div className="sidebar">
+        
+        <Link to="/my-recipes" className="sidebar-link">My Recipes</Link>
+        <Link to="/recipes"className="sidebar-link">All Recipes</Link>
+        <Link to="/recipes/new" className="sidebar-link">Create Recipe</Link>
+        <Link to="" onClick={handleSignout}>Log Out</Link>
+        </div>
+      
+        
+        <div className="main-content">
+        <header className="header">
+          <input type="search" placeholder="Search..." className="search-bar"/>
+        
+        </header>
+
+        <div className="profile-section">
+          <img
+            src={profileImage}
+            alt={`${user.username}'s profile`}
+            className="profile-image"
+          />
+          <h1 className="welcome-text">Welcome back, {user.username}!</h1>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;

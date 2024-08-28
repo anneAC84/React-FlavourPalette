@@ -1,0 +1,123 @@
+.recipe-details-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .recipe-details-header {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  
+  .recipe-details-image {
+    width: 40%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .recipe-details-info {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .recipe-details-title {
+    font-size: 2.2em;
+    color: #2c3e50;
+  }
+  
+  .recipe-details-description {
+    font-size: 1.2em;
+    color: #7f8c8d;
+  }
+  
+  .recipe-details-meta {
+    font-size: 1em;
+    color: #95a5a6;
+    margin: 5px 0;
+  }
+  
+  .recipe-details-content {
+    margin-top: 20px;
+  }
+  
+  .recipe-details-section {
+    margin-bottom: 20px;
+  }
+  
+  .recipe-details-section h2 {
+    font-size: 1.6em;
+    color: #34495e;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+  }
+  
+  .recipe-details-section p {
+    font-size: 1em;
+    line-height: 1.6em;
+    color: #2c3e50;
+  }
+  
+  .recipe-details-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .recipe-details-edit-button,
+  .recipe-details-delete-button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .recipe-details-edit-button {
+    background-color: #3498db;
+  }
+  
+  .recipe-details-edit-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .recipe-details-delete-button {
+    background-color: #e74c3c;
+  }
+  
+  .recipe-details-delete-button:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .recipe-details-header {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .recipe-details-image {
+      width: 100%;
+      max-width: 500px;
+    }
+  
+    .recipe-details-info {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .recipe-details-actions {
+      justify-content: center;
+    }
+  }

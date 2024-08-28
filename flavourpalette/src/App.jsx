@@ -1,7 +1,7 @@
 import { useState, createContext, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
-import Homepage from './components/Homepage/Homepage';
+import Homepage from './components/Homepage/Homepage'
 import Dashboard from './components/Dashboard/Dashboard';
 import SignupForm from './components/SignupForm/SignupForm'
 import SigninForm from './components/SigninForm/SigninForm'
@@ -76,7 +76,7 @@ const App = () => {
   };
 
   const handleUpdateRecipe = async (recipeId, recipeFormData) => {
-    console.log('Updating recipe with ID:', recipeId); 
+    console.log('Updating recipe with ID:', recipeId);
     try {
       const updatedRecipe = await recipeService.update(recipeId, recipeFormData);
       setRecipes(recipes.map((recipe) =>
