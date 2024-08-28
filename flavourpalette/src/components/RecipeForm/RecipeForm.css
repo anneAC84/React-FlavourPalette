@@ -1,23 +1,152 @@
-
-/* Increase the width of time picker input boxes */
-.react-time-picker__inputGroup__input {
-  width: 200px; /* Increase width as needed */
-  font-size: 1.2rem; /* Adjust font size for better readability */
-  text-align: center; /* Center align text */
-  /* Optional: Add padding to increase the box size */
-  padding: 5px;
+/* Container for the entire form */
+.recipe-form-container {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #ffffff; /* Clean background */
+  border-radius: 12px; /* More pronounced rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow for emphasis */
+  border: 1px solid #e9ecef /* Light border for subtle definition */
 }
 
-/* Ensure the time-picker container has appropriate styling */
-.react-time-picker {
-  margin: 10px 0; /* Adjust margins as needed */
+/* Form Header */
+.recipe-form-header {
+  font-size: 2.2rem; /* Slightly larger for impact */
+  font-weight: 700;
+  color: grey; /* Blue color for a vibrant title */
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #6D28D9; /* Colorful divider line */
+  padding-bottom: 10px;
+}
+
+/* Form Fields Container */
+.recipe-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between form elements */
+}
+
+/* Form Field Wrapper */
+.form-field-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label styling */
+.recipe-form-label {
+  font-size: 1.1rem; /* Consistent with other labels */
+  font-weight: 600;
+  color: #333; /* Dark color for readability */
+  margin-bottom: 8px;
+}
+
+/* Input and Textarea styling */
+.recipe-form-input,
+.recipe-form-textarea {
+  width: 100%;
+  padding: 14px; /* Comfortable input area */
+  border: 1px solid #ced4da;
+  border-radius: 6px; /* Rounded corners */
+  box-sizing: border-box;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: #f7f7f7; /* Light gray background for inputs */
+  transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+}
+
+.recipe-form-input:focus,
+.recipe-form-textarea:focus {
+  border-color: #9D4EDD; /* Blue border on focus */
+  background-color: #FF4F3A; /* White background on focus */
+}
+
+/* Cooking Time Input Wrapper */
+.cooking-time-input-wrapper {
   display: flex;
   align-items: center; /* Center align items vertically */
+  gap: 10px; /* Space between the input and the format text */
 }
 
-/* Ensure time-picker input group is styled properly */
-.react-time-picker__inputGroup {
-  width: 100px;
-    display: flex;
-  gap: 8px; /* Adjust space between input fields if necessary */
+/* Cooking Time Input */
+.cooking-time-input {
+  flex: 1; /* Allows the input to take up remaining space */
+  max-width: 120px; /* Adjust as needed */
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 6px; /* Rounded corners */
+  box-sizing: border-box;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: #ffffff; /* White background for the input */
+  transition: border-color 0.3s ease; /* Smooth transition */
+}
+
+.cooking-time-input:focus {
+  border-color: #007bff; /* Blue border on focus */
+}
+
+/* Cooking Time Format Text */
+.cooking-time-format {
+  font-size: 1rem; /* Consistent font size */
+  color: #9D4EDD; /* Blue color for the format text */
+}
+
+/* Submit Button styling */
+.recipe-form-button {
+  background-color: #6D28D9; /* Green color for the button */
+  color: #ffffff; /* White text color */
+  border: none;
+  border-radius: 6px; /* Rounded corners */
+  padding: 15px 20px; /* Added horizontal padding */
+  font-size: 1.1rem; /* Slightly larger font size */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  align-self: center; /* Center align the button */
+  width: 150px; /* Fixed width for consistency */
+  text-transform: uppercase; /* Capitalize text for style */
+}
+
+.recipe-form-button:hover {
+  background-color: #5b21b6; /* Darker green on hover */
+  transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Image Upload Container */
+.image-upload-container {
+  margin-bottom: 20px;/* Space below the image upload */
+  color: #6D28D9;
+}
+
+.image-upload-container label {
+  display: block;
+  font-size: 1.1rem; /* Consistent with other labels */
+  font-weight: 600;
+  color: black; /* Blue color for the label */
+  margin-bottom: 8px;
+}
+
+.image-upload-container img {
+  width: 100%;
+  max-width: 400px; /* Limit image width */
+  height: auto;
+  border-radius: 6px; /* Rounded corners for the image */
+  object-fit: cover; /* Ensure image covers without distortion */
+  border: 1px solid #e9ecef; /* Light border to match form container */
+  color: #FF6F61;
+}
+
+/* Flex Column Utility */
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Margin adjustments for form elements */
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px;
 }

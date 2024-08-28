@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as recipeService from '../../services/recipeService';
 import { Link } from 'react-router-dom'
+import './RecipeList.css';
 
 const RecipeList = ({ user }) => {
     const [recipes, setRecipes] = useState([]);

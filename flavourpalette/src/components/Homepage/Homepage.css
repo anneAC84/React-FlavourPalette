@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
@@ -26,24 +27,69 @@ body {
 .homepage-nav a {
     margin-left: 20px;
     text-decoration: none;
-    color: #007bff;
+    color: #f8f9fa;
     font-size: 1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+    font-family: 'Montserrat', sans-serif; 
 }
+
 
 .homepage-nav a:hover {
     text-decoration: underline;
+    color: #ffffff; /* Brighter hover effect */
+    transform: scale(1.05); /* Slight scale-up on hover for interactivity */
 }
+
 
 /* Hero section */
 .homepage-hero {
+    font-family: 'Lato', sans-serif;
     text-align: center;
-    margin: 40px 0;
+    margin: 60px 0;
+    background-image: url('https://t3.ftcdn.net/jpg/06/52/12/32/360_F_652123212_nGtoAqRmPtLHyPaAnrbNz6Hxttm0cmAN.jpg'); /* Replace with your image path */
+    background-size: cover; /* Ensures the image covers the entire hero section */
+    background-position: center; /* Centers the image */
+    position: relative; /* For overlay positioning */
+    color: #ffffff; /* White text for contrast */
+    padding: 120px 40px; /* Increased padding for a larger hero section */
+    border-radius: 10px; /* Soft rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Slight shadow for depth */
+    max-width: 1400px; /* Increase max width */
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.homepage-hero h1 {
-    font-size: 2.5rem;
-    color: #333;
+
+.homepage-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    border-radius: 10px; /* Match the border-radius of the hero section */
+    z-index: 1; /* Ensure overlay is above the background image */
 }
+
+/* Hero title */
+.homepage-hero h1 {
+    font-size: 3rem; /* Larger title font size */
+    margin-bottom: 20px; /* Space below the title */
+    font-family: 'Lato', sans-serif;
+}
+
+.homepage-hero h1, .homepage-hero p, .homepage-hero .btn-primary {
+    position: relative; /* Position above the overlay */
+    z-index: 2; /* Ensure content is above the overlay */
+}
+
+/* Optional: Hero subtitle */
+.homepage-hero p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
 
 /* Carousel section */
 .homepage-carousel {
@@ -53,7 +99,7 @@ body {
 /* Recipes grid */
 .homepage-recipes {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 80px;
 }
 
 .recipes-grid {
@@ -109,7 +155,7 @@ body {
 /* Primary button */
 .btn-primary {
     display: inline-block;
-    background-color: #007bff;
+    background-color: #6D28D9;
     color: #fff;
     padding: 10px 15px;
     text-decoration: none;
@@ -120,5 +166,5 @@ body {
 
 /* Button hover effect */
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #580e6d;
 }

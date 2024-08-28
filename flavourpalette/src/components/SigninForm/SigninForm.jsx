@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService';
 import { AuthedUserContext } from '../../App';
+import './SigninForm.css';
 
 const SigninForm = () => {
 const navigate = useNavigate();
@@ -42,47 +43,50 @@ const handleSubmit = async (e) => {
 
   return (
   <main>
-    <h1>Sign In</h1>
-     {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">Username:</label>
+    <div className="signin-form-container">
+    <h1 className="signin-form-header">Sign In</h1>
+     {errorMessage && <p className="error-message">{errorMessage}</p>}
+    <form onSubmit={handleSubmit} className="signin-form-fields">
+    <div className="form-field-wrapper">
+        <label htmlFor="username" className="signin-form-label">Username:</label>
         <input
           type="text"
           id="name"
           value={formData.username}
           name="username"
           onChange={handleChange}
+          className="signin-form-input"
           required
           
         />
         
       </div>
       
-      <div>
-        <label htmlFor="password">Password:</label>
+      <div className="form-field-wrapper">
+        <label htmlFor="password" className="signin-form-label">Password:</label>
         <input
           type="password"
           id="password"
           value={formData.password}
           name="password"
           onChange={handleChange}
+          className="signin-form-input"
           required
         />
       
       </div>      
-      <div>
-        <button type="submit" disabled={isFormInvalid()}>Sign In</button>
-        <Link to="/">
+      <div className="form-field-wrapper">
+        <button type="submit" className="signin-form-button" disabled={isFormInvalid()}>Sign In</button>
+        <Link to="/" className="signin-form-link">
           <button>Cancel</button>
         </Link>
       </div>
     </form>
     
-    <p>
+    <p className="signin-form-link">
       Do not have an account? <Link to="/signup">Sign Up</Link>
     </p>
-
+</div>
   </main>
 );
 };

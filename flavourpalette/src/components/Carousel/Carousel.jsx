@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Carousel.css'; // Create this CSS file for carousel-specific styling
+import { Link } from 'react-router-dom';
 
 const Carousel = ({ items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -18,10 +19,12 @@ const Carousel = ({ items }) => {
     <div className="carousel-container">
       <div className="carousel-track">
         {visibleItems.map((item, index) => (
+            <Link to={`/recipes/${item.id}`} key={item.id} className="carousel-item-link">
           <div className="carousel-item" key={index}>
             <img src={item.picture} alt={item.title} />
             <h3>{item.title}</h3>
           </div>
+          </Link>
         ))}
       </div>
     </div>

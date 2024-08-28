@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import { signup } from '../../services/authService'
 import { AuthedUserContext } from '../../App';
+import './SignupForm.css';
 
 const SignupForm = () => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -82,33 +83,36 @@ const handleSubmit = async (e) => {
 
     return (
     <main>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
+        <div className="signup-form-container">
+        <h1 className="signup-form-header">Sign Up</h1>
+      <form onSubmit={handleSubmit} className="signup-form-fields">
+      <div className="form-field-wrapper">
+          <label htmlFor="username" className="signup-form-label">Username:</label>
           <input
             type="text"
             id="name"
             value={formData.username}
             name="username"
             onChange={handleChange}
+            className="signup-form-input"
             required
             
           />
         </div>
-        <div>
-          <label htmlFor="email">Email:</label>
+        <div className="form-field-wrapper">
+          <label htmlFor="email" className="signup-form-label">Email:</label>
           <input
             type="email"
             id="email"
             value={formData.email}
             name="email"
             onChange={handleChange}
+            className="signup-form-input"
             required
           />
         </div>
-        <div>
-          <label htmlFor="password">Password:</label>
+        <div className="form-field-wrapper">
+          <label htmlFor="password" className="signup-form-label">Password:</label>
           <input
             type="password"
             id="password"
@@ -118,39 +122,40 @@ const handleSubmit = async (e) => {
             required
           />
         </div>
-        <div>
-          <label htmlFor="password_confirmation">Confirm Password:</label>
+        <div className="form-field-wrapper">
+          <label htmlFor="password_confirmation" className="signup-form-label">Confirm Password:</label>
           <input
             type="password"
             id="password_confirmation"
             value={formData.password_confirmation}
             name="password_confirmation"
             onChange={handleChange}
+            className="signup-form-input"
             required
           />
         </div>
-        <div>
+        <div className="form-field-wrapper image-upload-container">
           
-          <label htmlFor="profilePicture">profile picture:</label>
+          <label htmlFor="profilePicture" className="signup-form-label">profile picture:</label>
           <ImageUpload
             name="profile_image"
             photoImage={formData.profile_image}
             handleImageUpload={handleImageUpload}
              />   
         </div>
-         <div>
-          <button disabled={formData.password !== formData.password_confirmation}>Sign Up</button>
-          <Link to="/">
-            <button>Cancel</button>
+        <div className="form-field-wrapper">
+          <button type="submit" className="signup-form-button" disabled={formData.password !== formData.password_confirmation}>Sign Up</button>
+          <Link to="/"className="signup-form-link">
+            <button type="button"className="signup-form-button">Cancel</button>
           </Link>
         </div>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
       </form>
-      <p>
+      <p className="signup-form-link">
         Already have an account? <Link to="/signin">Log in</Link>
       </p>
-
+     </div>
     </main>
   );
 };

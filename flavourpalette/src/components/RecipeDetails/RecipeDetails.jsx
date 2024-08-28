@@ -42,69 +42,68 @@ const RecipeDetails = (props) => {
       
       return (
         <div className="recipe-details-container">
-          {recipeId === 'new' ? (
-            <div>
+        {recipeId === 'new' ? (
+          <div>   
               <h1>Create a New Recipe</h1>
-              {/* Render form or message for creating a new recipe */}
-            </div>
-          ) : (
+        {/* Render form or message for creating a new recipe */}
+      </div>
+           ) : (
             recipe && (
-              <>
-                <div className="recipe-details-header">
-                  <img
+                <>
+                  
+                    <div className="recipe-details-image-container">
+                      <img
                     src={recipe.picture}
                     alt={recipe.title}
                     className="recipe-details-image"
                   />
-                  <div className="recipe-details-info">
-                    <h1 className="recipe-details-title">{recipe.title}</h1>
-                    <p className="recipe-details-description">{recipe.description}</p>
-                    <p className="recipe-details-meta">
-                      Created by {recipe.created_by.username} on{' '}
-                      {new Date(recipe.created_at).toLocaleDateString()}
-                    </p>
-                    <p className="recipe-details-meta">
-                      Cooking time: {formatDuration(recipe.cooking_time)}
-                    </p>
                   </div>
-                </div>
-                <div className="recipe-details-content">
-                  <section className="recipe-details-section">
-                    <h2>Ingredients</h2>
-                    <p>{recipe.ingredients}</p>
-                  </section>
-                  <section className="recipe-details-section">
-                    <h2>Method</h2>
-                    <p>{recipe.method}</p>
-                  </section>
-                  <section className="recipe-details-section">
-                    <h2>Comments</h2>
-                    {/* Placeholder for comments section */}
-                  </section>
-                </div>
+                  <div className="recipe-details-content-container">                  
+              <h1 className="recipe-details-title">{recipe.title}</h1>
+              <p className="recipe-details-description">{recipe.description}</p>
+              <p className="recipe-details-meta">
+                Created by {recipe.created_by.username} on{' '}
+                {new Date(recipe.created_at).toLocaleDateString()}
+              </p>
+              <p className="recipe-details-meta">
+                Cooking time: {formatDuration(recipe.cooking_time)}
+              </p>
+            
+            <section className="recipe-details-section">
+              <h2>Ingredients</h2>
+              <p>{recipe.ingredients}</p>
+            </section>
+
+            <section className="recipe-details-section">
+              <h2>Method</h2>
+              <p>{recipe.method}</p>
+            </section>
+                  
+                
                 {recipe && user?.user?.id === recipe.created_by.id &&  (
                   <div className="recipe-details-actions">
-                    <Link
-                      to={`/recipes/${recipeId}/edit`}
-                      className="recipe-details-edit-button"
-                    >
-                      Edit
-                    </Link>
-                    <button
-                      className="recipe-details-delete-button"
-                      onClick={() => props.handleDeleteRecipe(recipeId)}
-                    >
+                  <Link
+                    to={`/recipes/${recipeId}/edit`}
+                    className="recipe-details-edit-button"
+                  >
+                    Edit
+                  </Link>
+
+                  <button
+                className="recipe-details-delete-button"
+                onClick={() => props.handleDeleteRecipe(recipeId)}
+              >
                       Delete
-                    </button>
-                  </div>
-                )}
-              </>
-            )
-          )}
-        </div>
-      );
-    };
-    
+                </button>
+              </div>
+            )}
+          </div>
+        </>
+      )
+    )}
+  </div>
+);
+}
 
 const formatDuration = (duration) => {
   const hours = Math.floor(duration / 3600);

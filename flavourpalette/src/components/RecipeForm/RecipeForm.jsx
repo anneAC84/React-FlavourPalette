@@ -3,6 +3,7 @@ import ImageUpload from '../ImageUpload/ImageUpload';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import * as recipeService from '../../services/recipeService';
+import './RecipeForm.css'
 
 const RecipeForm = (props) => {
   const [formData, setFormData] = useState({
@@ -55,13 +56,14 @@ const RecipeForm = (props) => {
 
 
   return (
-    <main>
+
+    <main className="recipe-form-container">
         
-      <h1>Create Recipe</h1>
-      <form onSubmit={handleSubmit}>
-      <h1>{recipeId ? 'Edit Recipe' : 'New Recipe'}</h1>
-        <div>
-          <label htmlFor="title-input">Title</label>
+    <h1 className="recipe-form-header">{recipeId ? 'Edit Recipe' : 'New Recipe'}</h1>
+      <form onSubmit={handleSubmit} className="recipe-form-fields">
+      
+      <div className="form-field-wrapper">
+          <label htmlFor="title-input"className="recipe-form-label">Title</label>
           <input
             required
             type="text"
@@ -72,7 +74,7 @@ const RecipeForm = (props) => {
           />
         </div>
 
-        <div>
+        <div className="image-upload-container">
           <label htmlFor="picture-input">Picture</label>
           <ImageUpload
             name="picture"
@@ -81,8 +83,8 @@ const RecipeForm = (props) => {
           />
         </div>
 
-        <div>
-          <label htmlFor="description-input">Description</label>
+        <div className="form-field-wrapper margin-bottom-20">
+          <label htmlFor="description-input" className="recipe-form-label">Description</label>
           <textarea
             required
             name="description"
@@ -92,8 +94,8 @@ const RecipeForm = (props) => {
           />
         </div>
 
-        <div>
-          <label htmlFor="ingredients-input">Ingredients</label>
+        <div className="form-field-wrapper margin-bottom-20">
+          <label htmlFor="ingredients-input"className="recipe-form-label">Ingredients</label>
           <textarea
             required
             name="ingredients"
@@ -103,8 +105,8 @@ const RecipeForm = (props) => {
           />
         </div>
 
-        <div>
-          <label htmlFor="method-input">Method</label>
+        <div className="form-field-wrapper margin-bottom-20">
+          <label htmlFor="method-input"className="recipe-form-label">Method</label>
           <textarea
             required
             name="method"
@@ -114,8 +116,10 @@ const RecipeForm = (props) => {
           />
         </div>
 
-        <div>
-          <label htmlFor="cooking-time-input">Cooking Time (ISO 8601 duration format)</label>
+        
+        
+          <label htmlFor="cooking-time-input"className="recipe-form-label">Cooking Time </label>
+          <div className="cooking-time-input-wrapper margin-bottom-20"> 
           <input
             required
             type="text"
@@ -123,11 +127,13 @@ const RecipeForm = (props) => {
             id="cooking-time-input"
             value={formData.cooking_time}
             onChange={handleChange}
+            className="cooking-time-input"
           />
+          <span className="cooking-time-format">(00:00:00 format)</span>
         </div>
 
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" className="recipe-form-button">Submit</button>
         </div>
       </form>
     </main>

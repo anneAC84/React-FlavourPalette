@@ -1,22 +1,24 @@
 .navbar-header {
     width: 100%;
-    padding: 20px 0; /* Adjusted padding to match spacing */
-    background-color: #f8f8f8; /* Match the background color if needed */
+    padding: 10px 20px; /* Adjusted padding to match spacing */
+    background-color: #1c1c1c; /* Match the background color if needed */
     display: flex;
     justify-content: space-between; /* Align items to the ends of the header */
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px; /* Space between header and content */
+    overflow-x: auto;
+    box-sizing: border-box;
   }
   
-  /* Signature/Branding */
   .navbar-signature {
-    font-size: 1.8rem; /* Match the font size from Homepage */
-    font-family: 'Brush Script MT', cursive; /* Match the font family */
-    color: #333; /* Match the color */
-    margin-left: 20px; /* Space from the left edge */
-  }
-  
+    font-size: 2rem; /* Increased font size for prominence */
+    font-family: 'Playfair Display', serif; /* Classy serif font */
+    color: #ffffff; /* White color for contrast */
+    margin-left: 20px;
+}
+
+
   /* Navigation Bar */
   .navbar-nav {
     display: flex;
@@ -36,13 +38,39 @@
     margin: 0;
   }
   
-  /* Navigation Links */
-  .navbar-nav ul li a {
+/* Navigation Links */
+.navbar-nav ul li a {
     text-decoration: none;
-    color: #007bff; /* Link color, adjust if needed */
-    transition: color 0.3s ease;
-  }
-  
-  .navbar-nav ul li a:hover {
-    color: #0056b3; /* Hover state */
-  }
+    color: #f8f9fa; /* Light grey for a softer contrast */
+    font-family: 'Montserrat', sans-serif; /* Streamlined, modern font */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+/* Hover State for Links */
+.navbar-nav ul li a:hover {
+    color: #ffffff; /* Brighter hover effect */
+    transform: scale(1.05); /* Slight scale-up on hover for interactivity */
+}
+
+/* Navigation Bar */
+.navbar-nav {
+    display: flex;
+    gap: 30px; /* Spaced out links for clarity */
+    font-size: 1rem; /* Font size for links */
+}
+
+/* Navigation List */
+.navbar-nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Navigation List Items */
+.navbar-nav ul li {
+    margin: 0;
+}
+
+
+
