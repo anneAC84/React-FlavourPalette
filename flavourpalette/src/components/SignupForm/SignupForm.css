@@ -1,114 +1,136 @@
-/* Container for the entire form */
+
 .signup-form-container {
     padding: 20px;
     max-width: 500px;
     margin: 0 auto;
-    background-color: #ffffff; /* Clean background */
-    border-radius: 12px; /* More pronounced rounded corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow for emphasis */
-    border: 1px solid #e9ecef; /* Light border for subtle definition */
+    background-color: #ffffff; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #e9ecef; 
   }
   
-  /* Form Header */
+  
   .signup-form-header {
-    font-size: 2.2rem; /* Slightly larger for impact */
+    font-size: 2.2rem; 
     font-weight: 700;
-    color: #6D28D9; /* Deep Plum color for header */
+    color: black; 
     text-align: center;
     margin-bottom: 20px;
-    border-bottom: 3px solid #6D28D9; /* Colorful divider line */
+    border-bottom: 3px solid rgb(204, 195, 195); 
     padding-bottom: 10px;
   }
   
-  /* Form Fields Container */
+  
   .signup-form-fields {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between form elements */
+    gap: 20px; 
   }
   
-  /* Form Field Wrapper */
+  
   .form-field-wrapper {
     display: flex;
     flex-direction: column;
   }
   
-  /* Label styling */
+  
   .signup-form-label {
-    font-size: 1.1rem; /* Consistent with other labels */
+    font-size: 1.1rem; 
     font-weight: 600;
-    color: #333; /* Dark color for readability */
+    color: grey; 
     margin-bottom: 8px;
   }
   
-  /* Input and Textarea styling */
+  
   .signup-form-input,
   .signup-form-textarea {
     width: 100%;
-    padding: 14px; /* Comfortable input area */
+    padding: 14px; 
     border: 1px solid #ced4da;
-    border-radius: 6px; /* Rounded corners */
+    border-radius: 6px; 
     box-sizing: border-box;
     font-size: 1rem;
     line-height: 1.6;
-    background-color: #f7f7f7; /* Light gray background for inputs */
-    transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+    background-color: #f7f7f7; 
+    transition: border-color 0.3s ease, background-color 0.3s ease; 
   }
   
   .signup-form-input:focus,
   .signup-form-textarea:focus {
-    border-color: #6D28D9; /* Deep Plum border on focus */
-    background-color: #ffffff; /* White background on focus */
+    border-color: grey; 
+    background-color: #ffffff; 
   }
   
-  /* Profile Image Upload Container */
+  
   .image-upload-container {
-    margin-bottom: 20px; /* Space below the image upload */
+    margin-bottom: 20px; 
   }
   
   .image-upload-container label {
     display: block;
-    font-size: 1.1rem; /* Consistent with other labels */
+    font-size: 1.1rem; 
     font-weight: 600;
-    color: #6D28D9; /* Deep Plum color for the label */
+    color: grey; 
     margin-bottom: 8px;
   }
   
   .image-upload-container img {
     width: 100%;
-    max-width: 400px; /* Limit image width */
+    max-width: 400px; 
     height: auto;
-    border-radius: 6px; /* Rounded corners for the image */
-    object-fit: cover; /* Ensure image covers without distortion */
-    border: 1px solid #e9ecef; /* Light border to match form container */
+    border-radius: 6px; 
+    object-fit: cover; 
+    border: 1px solid #e9ecef; 
+    color: grey;
   }
   
-  /* Submit Button styling */
+  
   .signup-form-button {
-    background-color: #6D28D9; /* Deep Plum color for the button */
-    color: #ffffff; /* White text color */
+    background-color: var(--primary-color); 
+    ; 
+    color: #ffffff; 
     border: none;
-    border-radius: 6px; /* Rounded corners */
-    padding: 15px 20px; /* Added horizontal padding */
-    font-size: 1.1rem; /* Slightly larger font size */
+    border-radius: 6px; 
+    padding: 15px 20px; 
+    font-size: 1.1rem; 
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    align-self: center; /* Center align the button */
-    width: 150px; /* Fixed width for consistency */
-    text-transform: uppercase; /* Capitalize text for style */
+    align-self: center; 
+    width: 150px; 
+    text-transform: uppercase;
   }
   
-  .signup-form-button:hover {
-    background-color: #5b21b6; /* Darker Plum on hover */
-    transform: scale(1.05); /* Slight scale effect on hover */
+  .signup-form-button.disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
   }
+  
+  .signup-form-button:disabled {
+    pointer-events: none;
+  }
+  
+  .signup-form-button:not(.disabled):hover {
+    background-color: #0056b3;
+  }
+
+  .signup-form-link {
+    color: grey;
+  }
+
+
+
+
+
+
+  
   
   /* Link Styling */
   .signup-form-link {
     display: inline-block;
     margin-top: 20px;
     text-align: center;
-    color: #6D28D9; /* Deep Plum color for links */
+    color: grey; /* Deep Plum color for links */
     text-decoration: none;
     font-size: 1rem;
   }
@@ -144,3 +166,5 @@
   .margin-bottom-10 {
     margin-bottom: 10px;
   }
+
+  

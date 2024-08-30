@@ -1,113 +1,113 @@
 .signin-form-container {
+   
+   
     padding: 20px;
-    max-width: 500px;
+    max-width: 400px;
     margin: 0 auto;
-    background-color: #ffffff; /* Clean background */
-    border-radius: 12px; /* More pronounced rounded corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow for emphasis */
-    border: 1px solid #e9ecef; /* Light border for subtle definition */
+    background-color: #ffffff;
+    border-radius: 12px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #e9ecef; 
   }
   
-  /* Form Header */
+  
   .signin-form-header {
-    font-size: 2.2rem; /* Slightly larger for impact */
+    font-size: 2.2rem; 
     font-weight: 700;
-    color: #6D28D9; /* Deep Plum color for header */
+    color: black; 
     text-align: center;
     margin-bottom: 20px;
-    border-bottom: 3px solid #6D28D9; /* Colorful divider line */
+    border-bottom: 3px solid #b0aeb3; 
     padding-bottom: 10px;
   }
   
-  /* Form Fields Container */
+  
   .signin-form-fields {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between form elements */
+    gap: 20px; 
   }
   
-  /* Form Field Wrapper */
+  
   .form-field-wrapper {
     display: flex;
     flex-direction: column;
   }
   
-  /* Label styling */
+  
   .signin-form-label {
-    font-size: 1.1rem; /* Consistent with other labels */
+    font-size: 1.1rem; 
     font-weight: 600;
-    color: #333; /* Dark color for readability */
+    color: #333; 
     margin-bottom: 8px;
   }
   
-  /* Input and Textarea styling */
+  
   .signin-form-input,
   .signin-form-textarea {
     width: 100%;
-    padding: 14px; /* Comfortable input area */
+    padding: 14px; 
     border: 1px solid #ced4da;
-    border-radius: 6px; /* Rounded corners */
+    border-radius: 6px; 
     box-sizing: border-box;
     font-size: 1rem;
     line-height: 1.6;
-    background-color: #f7f7f7; /* Light gray background for inputs */
-    transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+    background-color: #f7f7f7; 
+    transition: border-color 0.3s ease, background-color 0.3s ease; 
   }
   
   .signin-form-input:focus,
   .signin-form-textarea:focus {
-    border-color: #6D28D9; /* Deep Plum border on focus */
-    background-color: #ffffff; /* White background on focus */
+    border-color: black; 
+    background-color: #ffffff; 
   }
   
-  /* Submit Button styling */
+  
   .signin-form-button {
-    background-color: #6D28D9; /* Deep Plum color for the button */
-    color: #ffffff; /* White text color */
+    background-color:#afacac; 
+    color: #ffffff; 
     border: none;
-    border-radius: 6px; /* Rounded corners */
-    padding: 15px 20px; /* Added horizontal padding */
-    font-size: 1.1rem; /* Slightly larger font size */
+    border-radius: 6px; 
+    padding: 15px 20px; 
+    font-size: 1.1rem; 
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    align-self: center; /* Center align the button */
-    width: 150px; /* Fixed width for consistency */
-    text-transform: uppercase; /* Capitalize text for style */
+    align-self: center; 
+    width: 150px; 
+    text-transform: uppercase; 
   }
   
   .signin-form-button:hover {
-    background-color: #5b21b6; /* Darker Plum on hover */
-    transform: scale(1.05); /* Slight scale effect on hover */
+    background-color: rgb(95, 141, 186); 
+    transform: scale(1.05); 
   }
   
-  /* Link Styling */
+  
   .signin-form-link {
     display: inline-block;
     margin-top: 20px;
     text-align: center;
-    color: #6D28D9; /* Deep Plum color for links */
+    color: grey; 
     text-decoration: none;
     font-size: 1rem;
   }
+
+ 
+
   
-  .signin-form-link:hover {
-    text-decoration: underline; /* Underline on hover */
-  }
-  
-  /* Error Message Styling */
   .error-message {
     color: red;
     text-align: center;
     margin-top: 20px;
   }
   
-  /* Flex Column Utility */
+  
   .flex-column {
     display: flex;
     flex-direction: column;
   }
   
-  /* Margin adjustments for form elements */
+  
   .margin-bottom-20 {
     margin-bottom: 20px;
   }
@@ -115,3 +115,12 @@
   .margin-bottom-10 {
     margin-bottom: 10px;
   }
+
+  .signin-form input {
+    margin-bottom: 16px;
+    padding: 10px;
+    border: 1px solid #ddd; 
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  

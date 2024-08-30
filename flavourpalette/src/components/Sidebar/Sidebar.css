@@ -1,0 +1,68 @@
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #dcdcdc;
+    background-color: var(--sidebar-background-color) !important;
+    
+
+}
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #007bff;
+    margin-bottom: 10px;
+    color: var(--text-color)!important;
+
+}
+
+.profile-section h2 {
+    font-size: 1.5rem;
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+.profile-section p {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.sidebar-link {
+    color: #333;
+    text-decoration: none;
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+    color: var(--text-color)!important;
+
+}
+
+.sidebar-link:hover {
+    background-color: black!important;;
+    color: #007bff;
+}
+
+.sidebar-link .fa-icon {
+    margin-right: 10px;
+}
+
+.logout-link {
+    margin-top: auto;
+    color: #d9534f;
+}

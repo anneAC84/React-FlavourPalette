@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import './ThemeToggle.css'; // Ensure you create this CSS file
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthedUserContext } from '../../App';
+import './ThemeToggle.css'
 
 const ThemeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -7,6 +8,8 @@ const ThemeToggle = () => {
     if (savedTheme) return savedTheme === 'dark';
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
+
+  const { user } = useContext(AuthedUserContext);
 
   const toggleTheme = () => {
     setIsDarkMode(prevMode => !prevMode);
@@ -17,6 +20,10 @@ const ThemeToggle = () => {
     document.body.className = `${theme}-mode`;
     localStorage.setItem('theme', theme);
   }, [isDarkMode]);
+
+  if (!user) {
+    return null; 
+  }
 
   return (
     <label className="theme-toggle-switch">

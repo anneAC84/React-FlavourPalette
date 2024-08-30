@@ -22,17 +22,18 @@ const handleChange = (e) => {
       ...formData,
       [e.target.name]: e.target.value,
   });
+  setErrorMessage('');
 };
 
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    const data = await authService.signin(formData); // Call the signin function
+    const data = await authService.signin(formData);
     setUser(data.user);
-    // Redirect or update state to reflect the user is logged in
-    navigate('/');  // Assuming you have a dashboard route
+    
+    navigate('/'); 
   } catch (error) {
-    setErrorMessage(error.message); // Display the error message
+    setErrorMessage(error.message); 
   }
 };
 
@@ -44,6 +45,7 @@ const handleSubmit = async (e) => {
   return (
   <main>
     <div className="signin-form-container">
+    <div className="signin-form-wrapper">
     <h1 className="signin-form-header">Sign In</h1>
      {errorMessage && <p className="error-message">{errorMessage}</p>}
     <form onSubmit={handleSubmit} className="signin-form-fields">
@@ -83,12 +85,15 @@ const handleSubmit = async (e) => {
       </div>
     </form>
     
-    <p className="signin-form-link">
-      Do not have an account? <Link to="/signup">Sign Up</Link>
-    </p>
+    
+    </div>
+    <Link to="/signup" className="signin-form-link">
+  Do not have an account? Sign up
+</Link>
 </div>
   </main>
 );
 };
 
 export default SigninForm
+

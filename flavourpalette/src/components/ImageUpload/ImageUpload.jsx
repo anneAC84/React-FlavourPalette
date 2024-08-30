@@ -19,20 +19,20 @@ const ImageUpload = ({ handleImageUpload }) => {
     setMessage('');
     setPreview(null);
 
-    if (file.size > 100000000) {  // Adjust the size limit as needed
+    if (file.size > 100000000) { 
       return setMessage('Image too large. Please select a smaller image (max: 80KB)');
     }
 
     const previewUrl = URL.createObjectURL(file);
     setPreview(previewUrl);
 
-    const formData = new FormData();  // Create an empty form
+    const formData = new FormData();
 
-    // Append fields to form
+    
     formData.append('file', file);
     formData.append('upload_preset', uploadPreset);
 
-    // Send request to Cloudinary
+    
     try {
       const res = await fetch(uploadUrl, {
         method: 'POST',
@@ -42,8 +42,8 @@ const ImageUpload = ({ handleImageUpload }) => {
       const imageData = await res.json();
 
       if (imageData.secure_url) {
-        handleImageUpload(imageData.secure_url);  // Pass the URL string to the parent component
-        setMessage('');  // Clear any previous messages
+        handleImageUpload(imageData.secure_url);  
+        setMessage('');  
       } else {
         setMessage('Error uploading image. Please try again.');
       }
@@ -51,7 +51,7 @@ const ImageUpload = ({ handleImageUpload }) => {
       setMessage('Error uploading image. Please try again.');
       console.error('Error uploading image:', error);
     } finally {
-      // Clean up the URL object to avoid memory leaks
+      
       URL.revokeObjectURL(previewUrl);
     }
   };

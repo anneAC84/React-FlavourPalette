@@ -12,44 +12,44 @@ export const index = async () => {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
 
-    return res.json(); // Return the parsed JSON response
+    return res.json(); 
   } catch (error) {
     console.log('Error fetching recipes:', error);
-    throw error; // Rethrow the error to be handled by the component
+    throw error; 
   }
 };
 
 
 export const show = async (recipeId) => {
     try {
-      const token = localStorage.getItem('access_token');// Get the access token if available
+      const token = localStorage.getItem('access_token');
       const headers = {};
       if (token) {
-        headers.Authorization = `Bearer ${token}`; // Include the token in the headers if available
+        headers.Authorization = `Bearer ${token}`; 
       }
   
       const res = await fetch(`${BASE_URL}${recipeId}/`, {
-        headers, // Pass the headers object
+        headers, 
       });
   
       if (!res.ok) {
         if (res.status === 404) {
             throw new Error(`Recipe with ID ${recipeId} not found.`);
       }
-        throw new Error(`HTTP error! status: ${res.status}`); // Handle HTTP errors
+        throw new Error(`HTTP error! status: ${res.status}`); 
       }
       return res.json();
     } catch (error) {
       console.error(`Error fetching recipe with ID ${recipeId}:`, error);
-      throw error; // Rethrow the error to handle it elsewhere
+      throw error; 
     }
   };
 
   export const create = async (recipeFormData) => {
     try {
-      const token = localStorage.getItem('access_token'); // Get the access token if available
+      const token = localStorage.getItem('access_token'); 
       const headers = {
-        Authorization: token ? `Bearer ${token}` : '', // Include the token in the headers if available
+        Authorization: token ? `Bearer ${token}` : '', 
         'Content-Type': 'application/json',
       };
   
@@ -60,26 +60,26 @@ export const show = async (recipeId) => {
       });
   
       if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`); // Handle HTTP errors
+        throw new Error(`HTTP error! status: ${res.status}`); 
       }
   
-      return res.json(); // Return the parsed JSON response
+      return res.json(); 
     } catch (error) {
       console.error('Error creating recipe:', error);
-      throw error; // Rethrow the error to handle it elsewhere
+      throw error; 
     }
   };
 
 
   export const deleteRecipe = async (recipeId) => {
     try {
-      // Get the token from local storage
+      
       const token = localStorage.getItem('access_token');
       if (!token) {
         throw new Error('No token found. User is not authenticated.');
       }
   
-      // Make the DELETE request using fetch
+      
       const response = await fetch(`${BASE_URL}${recipeId}/`, {
         method: 'DELETE',
         headers: {
@@ -96,7 +96,7 @@ export const show = async (recipeId) => {
     if (isJson) {
       return await response.json();
     } else {
-      return {}; // or null, or true, depending on what you prefer to return
+      return {}; 
     }
   } catch (error) {
     console.error(`Error deleting recipe with ID ${recipeId}:`, error);
@@ -108,7 +108,7 @@ export const show = async (recipeId) => {
 export async function update(recipeId, recipeFormData) {
     try {
       const token = localStorage.getItem('access_token');
-      const url = `${BASE_URL}${recipeId}/`; // Ensure URL ends with a slash
+      const url = `${BASE_URL}${recipeId}/`; 
       console.log('Request URL:', url);
   
       const res = await fetch(url, {
@@ -134,3 +134,6 @@ export async function update(recipeId, recipeFormData) {
       throw error;
     }
   }
+
+
+  

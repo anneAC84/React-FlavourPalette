@@ -10,22 +10,23 @@ import { signout } from './services/authService';
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import * as recipeService from './services/recipeService';
 import RecipeForm from './components/RecipeForm/RecipeForm';
-
+import MyRecipes from './components/MyRecipes/MyRecipes';
 
 export const AuthedUserContext = createContext(null)
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [recipes, setRecipes] = useState([]);
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate(); 
+  const [userRecipes, setUserRecipes] = useState([]);
 
   useEffect(() => {
-    // Retrieve token and user data from localStorage on component mount
+    
     const token = localStorage.getItem('access_token');
     const userData = localStorage.getItem('user');
 
     if (token && userData) {
-      // Assuming userData is a JSON string
+      
       setUser(JSON.parse(userData));
     } else {
       console.log('No token or user data found');
@@ -46,7 +47,22 @@ const App = () => {
     };
 
     fetchAllRecipes();
-  }, [setRecipes, navigate]); // Run this effect only once, on component mount
+  }, [setRecipes, navigate]); 
+
+  const fetchUserRecipes = async () => {
+    try {
+      const recipesData = await recipeService.index(); 
+      setUserRecipes(recipesData.filter(recipe => recipe.created_by === user.id));
+    } catch (error) {
+      console.error('Error fetching user recipes:', error);
+    }
+  };
+  
+  useEffect(() => {
+    if (user) {
+      fetchUserRecipes();
+    }
+  }, [user]);
 
   const handleSignout = () => {
     console.log('Handling sign out...');
@@ -82,10 +98,10 @@ const App = () => {
       setRecipes(recipes.map((recipe) =>
         recipe._id === recipeId ? updatedRecipe : recipe
       ));
-      navigate(`/recipes/${recipeId}`); // Redirect after update
+      navigate(`/recipes/${recipeId}`); 
     } catch (error) {
       console.error('Error updating recipe:', error);
-      // Optionally, provide user feedback
+      
     }
   };
 
@@ -99,6 +115,7 @@ const App = () => {
       <Route path="/recipes/:recipeId" element={<RecipeDetails handleDeleteRecipe={handleDeleteRecipe} />} />
       {user && (
         <>
+        <Route path="/my-recipes" element={<MyRecipes user={user} />} />
           <Route path="/recipes/new" element={<RecipeForm handleAddRecipe={handleAddRecipe} />} />
           <Route path="/recipes/:recipeId/edit" element={<RecipeForm handleUpdateRecipe={handleUpdateRecipe} />} />
         </>

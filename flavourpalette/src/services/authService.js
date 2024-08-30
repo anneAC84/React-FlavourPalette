@@ -23,7 +23,7 @@ export const signup = async (formData) => {
 } catch (error) {
     console.error('Error in signup:', error);
     
-    // Re-throw the error for the calling function to handle it
+    
      throw error;
    }
 }
@@ -46,11 +46,11 @@ export const signin = async (formData) => {
       const data = await response.json();
       console.log('Signin Response:', data);
 
-    // Save the token to localStorage or cookies
+    
     localStorage.setItem('access_token', data.access);
     localStorage.setItem('refresh_token', data.refresh);
 
-    // Save user data if needed
+    
     localStorage.setItem('user', JSON.stringify(data.user));
 
     return data;

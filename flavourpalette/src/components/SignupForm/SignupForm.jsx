@@ -23,7 +23,7 @@ const SignupForm = () => {
   useEffect(() => {
     if (redirect) {
       setTimeout(() => {
-        navigate('/signin');  // Redirect to the dashboard
+        navigate('/signin'); 
       }, 2000);
     }
   }, [redirect, navigate]);
@@ -44,6 +44,11 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
     setSuccessMessage('');
+
+    if (formData.password !== formData.password_confirmation) {
+      setErrorMessage('Passwords do not match');
+      return;
+    }
     
     const dataToSubmit = { ...formData };
     if (!dataToSubmit.profile_image) {
@@ -52,13 +57,13 @@ const handleSubmit = async (e) => {
 
     try {
         const data = await signup(dataToSubmit);
-        setSuccessMessage('Signup successful! Redirecting to your dashboard...');
+        setSuccessMessage('Signup successful! Redirecting to the Log in page...');
         setUser(data.user);
         setRedirect(true);    
       } catch (error) {
         console.log("Error caught:", error);
 
-        if (error.response) {  // Access the attached response data
+        if (error.response) { 
             const errors = error.response;
 
           const messages = [];
@@ -144,17 +149,21 @@ const handleSubmit = async (e) => {
              />   
         </div>
         <div className="form-field-wrapper">
-          <button type="submit" className="signup-form-button" disabled={formData.password !== formData.password_confirmation}>Sign Up</button>
-          <Link to="/"className="signup-form-link">
-            <button type="button"className="signup-form-button">Cancel</button>
-          </Link>
+          <button
+           type="submit"
+           className={`signup-form-button ${isFormInvalid() ? 'disabled' : ''}`}
+           disabled={isFormInvalid()}
+         >Sign Up</button>
+          <Link to="/" className="signin-form-link">
+          <button>Cancel</button>
+        </Link>
         </div>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
       </form>
-      <p className="signup-form-link">
-        Already have an account? <Link to="/signin">Log in</Link>
-      </p>
+      <Link className="signup-form-link">
+        Already have an account? <Link to="/signin">Sign in</Link>
+      </Link>
      </div>
     </main>
   );

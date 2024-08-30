@@ -1,90 +1,157 @@
+
 .dashboard-container {
     display: flex;
     height: 100vh;
-    font-family: 'Playfair Display', serif; /* Use the same font as your other pages */
-    background-color: #e9eff1; /* Light blue-grey background to match the homepage */
-  }
-  
-  .sidebar {
+    font-family: var(--font-family); 
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Sidebar Styling */
+.sidebar {
     width: 250px;
-    background-color: #ffffff; /* White background to match the recipe cards */
+    background-color: #f8f9fa; 
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    border-right: 1px solid #dcdcdc; /* Light border for separation */
-  }
-  
-  .sidebar-link {
-    color: #333; /* Dark color for text for readability */
+    border-right: 1px solid #dcdcdc; 
+}
+
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px; 
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #007bff; 
+    margin-bottom: 10px; 
+}
+
+.profile-section h2 {
+    font-size: 1.5rem;
+    margin: 10px 0 5px;
+    color: #333; 
+}
+
+.profile-section p {
+    font-size: 0.9rem;
+    color: #777; 
+}
+
+
+.sidebar-link {
+    color: #333;
     text-decoration: none;
-    margin: 10px 0;
+    margin: 15px 0;
     padding: 10px;
     border-radius: 4px;
+    display: flex;
+    align-items: center; 
     transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .sidebar-link:hover {
-    background-color: #f1f1f1; /* Light grey background on hover */
-    color: #007bff; /* Change text color on hover for a pop effect */
-  }
-  
-  .logout-link {
+}
+
+.sidebar-link:hover {
+    background-color: #e9ecef;
+    color: #007bff; 
+}
+
+
+.sidebar-link .fa-icon {
+    margin-right: 10px; 
+}
+
+
+.logout-link {
     margin-top: auto;
-  }
-  
-  .main-content {
+    color: #d9534f; 
+}
+
+
+.main-content {
     flex-grow: 1;
-    padding: 20px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
-  }
-  
-  .header {
+    background-color: #e0e0e0;
+    color: var(--main-content-text-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--card-shadow);
+}
+
+
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-  }
-  
-  .search-bar {
+}
+
+
+.search-bar {
     padding: 10px;
     width: 300px;
     border: 1px solid #bdc3c7;
     border-radius: 4px;
-    font-family: 'Playfair Display', serif; /* Match the font family */
-  }
-  
-  .toggle-theme {
+    font-family: 'Playfair Display', serif; 
+    color: #333;
+}
+
+.toggle-theme {
     padding: 10px 20px;
-    background-color: #007bff; /* Primary button color */
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  .toggle-theme:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-  }
-  
-  .profile-section {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .profile-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid #007bff; /* Adding a border to match theme */
+}
+
+.toggle-theme:hover {
+    background-color: #0056b3;
+}
+
+
+.welcome-text {
+    font-size: 2rem;
     margin-bottom: 20px;
-  }
-  
-  .welcome-text {
-    font-size: 24px;
-    color: #333; /* Dark text for contrast */
-    font-family: 'Playfair Display', serif; /* Consistent font family */
-  }
+    color: #333; 
+}
+
+
+.widget {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.widget h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #007bff; 
+}
+
+.widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.widget ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #555; 
+}
+
+.widget p {
+    font-size: 1rem;
+    color: #555;
+}

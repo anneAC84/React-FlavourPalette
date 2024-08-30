@@ -1,29 +1,29 @@
 .navbar-header {
     width: 100%;
-    padding: 10px 20px; /* Adjusted padding to match spacing */
-    background-color: #1c1c1c; /* Match the background color if needed */
+    padding: 10px 20px; 
+    background-color: #1c1c1c; 
     display: flex;
-    justify-content: space-between; /* Align items to the ends of the header */
+    justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px; /* Space between header and content */
+    margin-bottom: 20px; 
     overflow-x: auto;
     box-sizing: border-box;
   }
   
   .navbar-signature {
-    font-size: 2rem; /* Increased font size for prominence */
-    font-family: 'Playfair Display', serif; /* Classy serif font */
-    color: #ffffff; /* White color for contrast */
+    font-size: 2rem; 
+    font-family: 'Playfair Display', serif; 
+    color: #ffffff; 
     margin-left: 20px;
 }
 
 
-  /* Navigation Bar */
+  
   .navbar-nav {
     display: flex;
-    gap: 40px; /* Space between the links */
-    font-size: 1rem; /* Font size for links */
+    gap: 40px; 
+    font-size: 1rem; 
   }
   
   .navbar-nav ul {
@@ -38,27 +38,27 @@
     margin: 0;
   }
   
-/* Navigation Links */
+
 .navbar-nav ul li a {
     text-decoration: none;
-    color: #f8f9fa; /* Light grey for a softer contrast */
-    font-family: 'Montserrat', sans-serif; /* Streamlined, modern font */
-    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
-}
-/* Hover State for Links */
-.navbar-nav ul li a:hover {
-    color: #ffffff; /* Brighter hover effect */
-    transform: scale(1.05); /* Slight scale-up on hover for interactivity */
+    color: #f8f9fa; 
+    font-family: 'Montserrat', sans-serif; 
+    transition: color 0.3s ease, transform 0.3s ease; 
 }
 
-/* Navigation Bar */
+.navbar-nav ul li a:hover {
+    color: #ffffff; 
+    transform: scale(1.05); 
+}
+
+
 .navbar-nav {
     display: flex;
-    gap: 30px; /* Spaced out links for clarity */
-    font-size: 1rem; /* Font size for links */
+    gap: 30px; 
+    font-size: 1rem; 
 }
 
-/* Navigation List */
+
 .navbar-nav ul {
     list-style-type: none;
     display: flex;
@@ -67,10 +67,13 @@
     margin: 0;
 }
 
-/* Navigation List Items */
 .navbar-nav ul li {
     margin: 0;
 }
 
+
+.homepage-nav{
+    color: grey;
+}
 
 

@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { AuthedUserContext } from '../../App'
 import { useContext } from 'react'; 
 import './NavBar.css';  // Add this for any specific styling
+import ThemeToggle from '../Toggle/ThemeToggle';
+
 
 const NavBar = ({ handleSignout }) => {
 
@@ -16,7 +18,7 @@ const NavBar = ({ handleSignout }) => {
         
             { user ? (
             <>
-            
+            {user && <ThemeToggle />} {/* Render ThemeToggle only for logged-in users */}
             <li><Link to="/">Dashboard</Link></li>
             <li><Link to="" onClick={handleSignout}>Sign Out</Link></li>
             <li><Link to="/recipes/new">New Recipe</Link></li>

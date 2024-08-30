@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: var(--font-family);
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
@@ -14,7 +14,7 @@ body {
     padding: 20px;
 }
 
-/* Header styling */
+
 .homepage-header {
     display: flex;
     justify-content: space-between;
@@ -36,25 +36,25 @@ body {
 
 .homepage-nav a:hover {
     text-decoration: underline;
-    color: #ffffff; /* Brighter hover effect */
-    transform: scale(1.05); /* Slight scale-up on hover for interactivity */
+    color: #ffffff; 
+    transform: scale(1.05); 
 }
 
 
-/* Hero section */
+
 .homepage-hero {
     font-family: 'Lato', sans-serif;
     text-align: center;
     margin: 60px 0;
-    background-image: url('https://t3.ftcdn.net/jpg/06/52/12/32/360_F_652123212_nGtoAqRmPtLHyPaAnrbNz6Hxttm0cmAN.jpg'); /* Replace with your image path */
-    background-size: cover; /* Ensures the image covers the entire hero section */
-    background-position: center; /* Centers the image */
-    position: relative; /* For overlay positioning */
-    color: #ffffff; /* White text for contrast */
-    padding: 120px 40px; /* Increased padding for a larger hero section */
-    border-radius: 10px; /* Soft rounded corners */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Slight shadow for depth */
-    max-width: 1400px; /* Increase max width */
+    background-image: url('https://t3.ftcdn.net/jpg/06/52/12/32/360_F_652123212_nGtoAqRmPtLHyPaAnrbNz6Hxttm0cmAN.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    position: relative; 
+    color: #ffffff; 
+    padding: 120px 40px;
+    border-radius: 10px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+    max-width: 1400px; 
     margin-left: auto;
     margin-right: auto;
 }
@@ -67,36 +67,36 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-    border-radius: 10px; /* Match the border-radius of the hero section */
-    z-index: 1; /* Ensure overlay is above the background image */
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px; 
+    z-index: 1; 
 }
 
-/* Hero title */
+
 .homepage-hero h1 {
-    font-size: 3rem; /* Larger title font size */
-    margin-bottom: 20px; /* Space below the title */
+    font-size: 3rem; 
+    margin-bottom: 20px; 
     font-family: 'Lato', sans-serif;
 }
 
 .homepage-hero h1, .homepage-hero p, .homepage-hero .btn-primary {
-    position: relative; /* Position above the overlay */
-    z-index: 2; /* Ensure content is above the overlay */
+    position: relative; 
+    z-index: 2; 
 }
 
-/* Optional: Hero subtitle */
+
 .homepage-hero p {
     font-size: 1.2rem;
     margin-top: 10px;
 }
 
 
-/* Carousel section */
+
 .homepage-carousel {
     margin-bottom: 40px;
 }
 
-/* Recipes grid */
+
 .homepage-recipes {
     text-align: center;
     margin-top: 80px;
@@ -110,13 +110,13 @@ body {
     margin-top: 20px;
 }
 
-/* Recipe card styling */
+
 .recipe-card {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: calc(25% - 20px); /* Four cards per row */
+    width: calc(25% - 20px); 
     max-width: 300px;
     padding: 10px;
     box-sizing: border-box;
@@ -126,10 +126,10 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover effect for the pop-out */
+
 .recipe-card:hover {
-    transform: translateY(-10px); /* Moves the card upwards */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Adds a stronger shadow for the pop-out effect */
+    transform: translateY(-10px); 
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); 
 }
 
 .recipe-image {
@@ -146,7 +146,7 @@ body {
     color: #333;
 }
 
-/* Description text */
+
 .recipe-card p {
     font-size: 1rem;
     color: #666;
