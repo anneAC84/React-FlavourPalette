@@ -27,7 +27,7 @@ const RecipeDetails = (props) => {
       }
     }, [recipeId]);
   
-    // Debugging logs to verify user and recipe data
+    
     console.log('recipe state:', recipe);
     console.log('user state:', user);
   
